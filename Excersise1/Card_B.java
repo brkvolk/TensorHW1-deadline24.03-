@@ -1,5 +1,4 @@
 package Excersise1;
-import java.io.IOException;
 
 public class Card_B
 {
@@ -30,5 +29,9 @@ public class Card_B
             return true;
        } return false;
     }
+    public String getInfo()
+    {
+        return "rank:\t" + rank +"suit:\t" + suit;
+    } 
 }
 
