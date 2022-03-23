@@ -1,5 +1,4 @@
 package Excersise2;
-import java.io.IOException;
 
 public class Card_B
 {
