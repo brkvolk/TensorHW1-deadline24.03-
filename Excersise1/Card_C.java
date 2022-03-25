@@ -25,8 +25,8 @@ public class Card_C {
     }
 
     private boolean IsSuitValid(String suit) {
-       for(String r:Suits)  {
-           if(suit.equals(r))
+       for(String s:Suits)  {
+           if(suit.equals(s))
             return true;
         }return false;
     }
