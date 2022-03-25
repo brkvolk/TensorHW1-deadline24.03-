@@ -2,19 +2,25 @@ package Excersise4;
 
 public abstract class AbstractFileSystemNode implements IFileSystemNode 
 {
+    public IFileSystemNode parent;
+    String name;
+    String path;
  @Override
- public IFileSystemNode GetParent() {
-     // TODO Auto-generated method stub
-     return null;
+ final public IFileSystemNode GetParent() {
+     return parent;
  }   
  @Override
  public String GetName() {
-     // TODO Auto-generated method stub
-     return null;
+     return name;
  }
  @Override
- public String GetPath() {
-     // TODO Auto-generated method stub
-     return null;
+ final public String GetPath() {
+    return path;
+}
+ final public void ChangeParent(IFileSystemNode newParent)
+ {
+    this.parent = newParent;
+    path = newParent.GetPath()+"/";
  }
+ 
 }
