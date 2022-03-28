@@ -22,7 +22,7 @@ public class Card implements Comparable {
 
         public static int GetRandomRank() {
             Random rnd = new Random();
-            return Rank.values()[rnd.nextInt() % 4].rankValue;
+            return Rank.values()[rnd.nextInt(13) + 1].rankValue;
         }
     }
 
@@ -41,7 +41,7 @@ public class Card implements Comparable {
 
         public static String GetRandomSuit() {
             Random rnd = new Random();
-            return Suit.values()[rnd.nextInt() % 4].name();
+            return Suit.values()[rnd.nextInt(4)].name();
         }
     }
 
@@ -132,7 +132,7 @@ public class Card implements Comparable {
             return 0;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return -1025635;
+            return 0;
         }
     }
 
@@ -154,11 +154,14 @@ public class Card implements Comparable {
     @Override
     public int compareTo(Object o) {
         Card c = (Card) o;
-        if (this.IsStrongerThan(c))
-            return 1;
-        else if (c.IsStrongerThan(this))
-            return -1;
-        else
+        if (this.Compare(c) != 0)// compare suits
             return this.Compare(c);
+        else {
+            if (this.IsStrongerThan(c))
+                return 1;
+            else if (c.IsStrongerThan(this))
+                return -1;
+            return 0;
+        }
     }
 }

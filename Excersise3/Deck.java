@@ -6,7 +6,6 @@ import java.util.Random;
 public class Deck {
 
     private ArrayList<Card> deck;
-    protected int size;
 
     private Deck(int mode) {
         // ???
@@ -14,7 +13,6 @@ public class Deck {
             deck = new ArrayList<Card>(52);
         else
             deck = new ArrayList<Card>(54);
-        size = deck.size();
         for (Card.Suit s : Card.Suit.values())
             for (Card.Rank r : Card.Rank.values())
                 if (r.GetRankValue() < 15)
@@ -23,6 +21,10 @@ public class Deck {
             deck.add(new Card(15, Card.Suit.HEARTS.name()));
             deck.add(new Card(15, Card.Suit.SPADES.name()));
         }
+    }
+
+    public int size() {
+        return deck.size();
     }
 
     public static Deck CreateDeck() {
@@ -39,8 +41,8 @@ public class Deck {
 
     public void MixDeck() {
         Random rnd = new Random();
-        for (int i = 0; i < deck.size() / 2; i++) {
-            Card c = deck.get(rnd.nextInt() % deck.size());
+        for (int i = 0; i < deck.size() * 2; i++) {
+            Card c = deck.get(rnd.nextInt(deck.size() - 1));
             deck.remove(c);
             PushCard(c);
         }
@@ -48,9 +50,9 @@ public class Deck {
 
     public void SortDeck() {
         for (int i = 0; i < deck.size() - 1; i++)
-            for (int j = i + 1; j < deck.size() - i; j++) {
-                if (deck.get(i).compareTo(deck.get(j)) < 0)
-                    SwapCards(i, j);
+            for (int j = deck.size() - 1; j > i; j--) {
+                if (deck.get(j - 1).compareTo(deck.get(j)) > 0)
+                    SwapCards(j - 1, j);
             }
     }
 
@@ -63,7 +65,7 @@ public class Deck {
     public Card PopCard() {
         try {
             if (!this.IsEmpty())
-                return deck.remove(deck.size());
+                return deck.remove(deck.size() - 1);
             else
                 throw new Exception("Deck is empty!");
         } catch (Exception e) {
@@ -85,11 +87,14 @@ public class Deck {
     }
 
     public boolean IsEmpty() {
-        return deck.size() > 0;
+        return deck.isEmpty();
     }
 
     @Override
     public String toString() {
+        if (this.IsEmpty()) {
+            return "Deck is empty";
+        }
         String res = "";
         for (Card c : deck)
             res += '\n' + c.toString();
