@@ -24,6 +24,5 @@ public abstract class AbstractFileSystemNode implements IFileSystemNode {
         this.parent = newParent;
         path = newParent.GetPath() + "/" + this.name;
     }
-    
 
 }

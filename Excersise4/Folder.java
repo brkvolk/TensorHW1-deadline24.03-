@@ -6,7 +6,7 @@ import java.util.List;
 public class Folder extends AbstractFileSystemNode {
     List<IFileSystemNode> Children;
 
-    public Folder(String name, IFileSystemNode ... newChildren) {
+    public Folder(String name, IFileSystemNode... newChildren) {
         this(name);
         for (IFileSystemNode newChild : newChildren)
             this.AddChild(newChild);

@@ -15,6 +15,6 @@ public class Program {
             System.out.printf("root chlild:\t%s\n", f.GetName());
         Folder folder = (Folder) root.Children.get(1);
         for (IFileSystemNode f : folder.GetChildren())
-            System.out.println( f.GetName());
+            System.out.println(f.GetName());
     }
 }
